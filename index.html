@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Redirect</title>
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const key = params.get("link");
+
+      // Tabela com seus links
+      const links = {
+        "jirachi": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_event_Pok%C3%A9mon_distributions_in_Generation_III#:~:text=This%20Jirachi%20was%20always%20male.",
+        "meowth": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_event_Pok%C3%A9mon_distributions_in_Generation_III#:~:text=This%20Meowth%20was%20distributed%20with%20Glitter%20Mail."
+        // aqui você adiciona mais
+      };
+
+      if (links[key]) {
+        window.location.href = links[key];
+      } else {
+        document.write("⚠️ Link inválido ou não encontrado");
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
