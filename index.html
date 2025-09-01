@@ -120,6 +120,13 @@
           document.body.appendChild(a);
         }
 
+        function redirect(dest) {
+          const meta = document.createElement("meta");
+          meta.httpEquiv = "refresh";
+          meta.content = `0;url=${dest}`;
+          document.head.appendChild(meta);
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
           document.body.appendChild(status);
 
@@ -130,7 +137,7 @@
 
           const dest = links[key];
           if (!dest) {
-            status.textContent = `Chave "${key}" não encontrada.`;
+            status.textContent = `Chave \"${key}\" não encontrada.`;
             const small = document.createElement("small");
             small.textContent = "Chaves válidas: " + Object.keys(links).join(", ");
             document.body.appendChild(small);
@@ -139,13 +146,7 @@
 
           status.textContent = "Redirecionando...";
           showFallback(dest);
-
-          try {
-            window.location.href = dest;
-          } catch (e) {
-            // Último recurso
-            location.href = dest;
-          }
+          redirect(dest);
         });
       })();
     </script>
