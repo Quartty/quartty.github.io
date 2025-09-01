@@ -9,7 +9,7 @@
         const params = new URLSearchParams(location.search);
         const key = (params.get("link") || "").trim();
 
-      const links = {
+        const links = {
         "wishing-star-jirachi": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_event_Pok%C3%A9mon_distributions_in_Generation_III#:~:text=This%20Jirachi%20was%20distributed%20to%20the,for%20this%20Jirachi%20was%20always%20male.",
         "pokepark-meowth": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_event_Pok%C3%A9mon_distributions_in_Generation_III#:~:text=This%20Meowth%20was,its%20Glitter%20Mail.",
         "hado-mew": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_event_Pok%C3%A9mon_distributions_in_Generation_III#:~:text=This%20Mew%20was%20distributed%20to,character%20Lucario%20in%20the%20movie.",
@@ -107,10 +107,9 @@
         "movie-index": "https://bulbapedia.bulbagarden.net/wiki/List_of_locations_by_index_number_in_Generation_VI#:~:text=40003,Pok%C3%A9mon%20Movie%2018"
       };
 
-const status = document.createElement("p");
+        const status = document.createElement("p");
         status.style.fontFamily = "system-ui, Arial, sans-serif";
         status.textContent = "Preparando redirecionamento...";
-        document.addEventListener("DOMContentLoaded", () => document.body.appendChild(status));
 
         function showFallback(dest) {
           const a = document.createElement("a");
@@ -121,34 +120,33 @@ const status = document.createElement("p");
           document.body.appendChild(a);
         }
 
-        if (!key) {
-          status.textContent = "Nenhuma chave ?link= informada.";
-          return;
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+          document.body.appendChild(status);
 
-        const dest = links[key];
-        if (!dest) {
-          status.textContent = `Chave "${key}" não encontrada.`;
-          const small = document.createElement("small");
-          small.textContent = "Chaves válidas: " + Object.keys(links).join(", ");
-          document.body.appendChild(small);
-          return;
-        }
+          if (!key) {
+            status.textContent = "Nenhuma chave ?link= informada.";
+            return;
+          }
 
-        status.textContent = "Redirecionando...";
-        showFallback(dest);
+          const dest = links[key];
+          if (!dest) {
+            status.textContent = `Chave "${key}" não encontrada.`;
+            const small = document.createElement("small");
+            small.textContent = "Chaves válidas: " + Object.keys(links).join(", ");
+            document.body.appendChild(small);
+            return;
+          }
 
-        try {
-          location.replace(dest);
-          setTimeout(function () {
-            if (!document.hidden && location.href.indexOf(dest) === -1) {
-              location.href = dest;
-            }
-          }, 150);
-        } catch (e) {
-          // Último recurso
-          location.href = dest;
-        }
+          status.textContent = "Redirecionando...";
+          showFallback(dest);
+
+          try {
+            window.location.href = dest;
+          } catch (e) {
+            // Último recurso
+            location.href = dest;
+          }
+        });
       })();
     </script>
   </head>
