@@ -11,11 +11,14 @@
       const links = {
         "jirachi": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_event_Pok%C3%A9mon_distributions_in_Generation_III#:~:text=This%20Jirachi%20was%20distributed%20to%20the,for%20this%20Jirachi%20was%20always%20male.",
         "meowth": "https://bulbapedia.bulbagarden.net/wiki/List_of_Japanese_event_Pok%C3%A9mon_distributions_in_Generation_III#:~:text=This%20Meowth%20was,its%20Glitter%20Mail."
-        // aqui você adiciona mais
+        // adicione mais links aqui
       };
 
       if (links[key]) {
-        window.location.href = links[key];
+        // Pequeno atraso para garantir que o fragmento seja respeitado
+        setTimeout(() => {
+          window.location.href = links[key];
+        }, 50);
       } else {
         document.write("⚠️ Link inválido ou não encontrado");
       }
